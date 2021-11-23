@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Tool</title>
+</head>
+<body>
+    <div id="quiz-container">
+        <a href="javascript:getQuestions()">Click here to start the quiz</a>
+    </div>
+</body>
+<script>
+    function getQuestions(){
+        let xReq = new XMLHttpRequest();
+
+        // When the readyState property of the xReq changes, call the displayQuestions function
+        xReq.onreadystatechange = displayQuestions;
+
+        // GET /questions asynchronously
+        xReq.open("GET", "/questions", true);
+
+        // Send the xReq
+        xReq.send();
+    }
+      
+
+    function displayQuestions() {
+        // If the xReq is finished and the status is OK, display the questions
+        if (this.readyState == 4 && this.status == 200) {
+            let quizContainer = document.getElementById("quiz-container");
+            let questions = JSON.parse(this.responseText);
+            let markup = "";
+
+            for (const [i, q] of questions.entries()) {
+                markup += `<p>${i+1}. ${q.stem}</p>`;
+                
+                for(const [num, opt] of q.options.entries()){
+                    markup += `
+                    <input type="radio" id="${num}" value="${opt}" name="q${i+1}">
+                    <label for="${num}">${opt}</label><br>
+                    `
+                }
+            }
+
+            quizContainer.innerHTML = markup;
+        }
+    }
+</script>
+</html>

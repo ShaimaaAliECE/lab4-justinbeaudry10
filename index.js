@@ -6,12 +6,14 @@ const app = express();
 // Serve static contents
 app.use(express.static("static"));
 
+// Needed to post form data
 app.use(
   express.urlencoded({
     extended: true,
   })
 );
 
+// Needed to post json objects
 app.use(express.json());
 
 // Gets questions from json object
@@ -22,9 +24,19 @@ app.get("/questions", (req, res) => {
 
 // Checks answer for current question
 app.post("/check", (req, res) => {
-  const question = req.body;
+  // Format of selection: q#a#
+  const selection = req.body["id"];
+  // Takes the 2nd character as the question number, convert to number
+  const question = +selection[1];
+  // Takes the 4th character as the answer number, convert to number
+  const answer = +selection[3];
 
-  res.send(question);
+  let result =
+    questions[question - 1]["answerIndex"] === answer - 1
+      ? "Correct!"
+      : "Incorrect";
+
+  res.send(result);
 });
 
 // Submits quiz answers

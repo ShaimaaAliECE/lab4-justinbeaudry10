@@ -42,7 +42,7 @@ xReq.onreadystatechange = function () {
           answerReq.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
               let result = this.responseText;
-              console.log(result);
+              alert(result);
             }
           };
 

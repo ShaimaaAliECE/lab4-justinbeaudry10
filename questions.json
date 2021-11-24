@@ -1,31 +1,32 @@
 [
     {
-        "stem": "The argument to the jQuery function MUST be a string.",
-        "options": ["True","False"],
+        "stem": "Who is the NBA's all time leader in points?",
+        "options": ["Michael Jordan","Kareem Abdul-Jabbar", "LeBron James", "Wilt Chamberlain"],
         "answerIndex": 1
     }
     ,
     {
-        "stem":"Which of the following HTTP versions DOES NOT allow for the transfer of multi-media resources (e.g. images)",
-        "options":["0.9","1.0","1.1","None of the given"],
+        "stem":"Which player has won the most NBA Championships?",
+        "options":["Michael Jordan","Kobe Bryant","LeBron James","Bill Russell"],
+        "answerIndex": 3
+    }
+    ,
+    {
+        "stem":"Which of these players does NOT have an MVP?",
+        "options":["Derrick Rose","Dwyane Wade","Allen Iverson","Dirk Nowitzki"],
+        "answerIndex": 1
+    }
+    ,
+    {
+        "stem": "Who is the NBA's all-time leader in 3 pointers made?",
+        "options": ["Stephen Curry","Ray Allen", "Reggie Miller", "Kyle Korver"],
+        "answerIndex": 1
+    }
+    ,
+    {
+        "stem": "Who was the #1 pick in the 2021 NBA Draft?",
+        "options": ["Cade Cunningham","Scottie Barnes", 
+        "Evan Mobley", "Jalen Green"],
         "answerIndex": 0
-    }
-    ,
-    {
-        "stem":"If we omit the HTTP version when sending a request, it would be assumed to be:",
-        "options":["0.9","1.0","1.1","None of the given"],
-        "answerIndex": 0
-    }
-    ,
-    {
-        "stem": "The HTTP Cookies can only be created using Express.",
-        "options": ["True","False"],
-        "answerIndex": 1
-    }
-    ,
-    {
-        "stem": "When we write server-side code with JavaScript, we need to find a webserver that can execute the JS code.",
-        "options": ["True","False"],
-        "answerIndex": 1
     }
 ]

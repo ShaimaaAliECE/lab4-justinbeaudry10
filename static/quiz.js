@@ -35,6 +35,26 @@ xReq.onreadystatechange = function () {
 
       // Set the quiz-container div's html to the markup we created
       $("#quiz-container").html(markup);
+
+      $(`input[type="radio"]`).change(function () {
+        if ($(this).is(":checked")) {
+          let answerReq = new XMLHttpRequest();
+          answerReq.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+              let result = this.responseText;
+              console.log(result);
+            }
+          };
+
+          let optionObj = {
+            id: this.id,
+          };
+          let jsonObj = JSON.stringify(optionObj);
+          answerReq.open("POST", "/check", true);
+          answerReq.setRequestHeader("Content-Type", "application/json");
+          answerReq.send(jsonObj);
+        }
+      });
     });
   }
 };

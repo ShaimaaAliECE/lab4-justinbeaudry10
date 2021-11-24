@@ -36,22 +36,32 @@ xReq.onreadystatechange = function () {
       // Set the quiz-container div's html to the markup we created
       $("#quiz-container").html(markup);
 
+      // Anytime a radio button is changed
       $(`input[type="radio"]`).change(function () {
+        // If it is now checked
         if ($(this).is(":checked")) {
+          // New request for the post request
           let answerReq = new XMLHttpRequest();
           answerReq.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
+              // Give feedback to user in the form of an alert
               let result = this.responseText;
               alert(result);
             }
           };
 
+          // Object to hold this radio button's id
           let optionObj = {
             id: this.id,
           };
+
+          // Converts this object to be able to send it in the post request
           let jsonObj = JSON.stringify(optionObj);
+
+          // Configuring post request
           answerReq.open("POST", "/check", true);
           answerReq.setRequestHeader("Content-Type", "application/json");
+          // Send the json object in the request
           answerReq.send(jsonObj);
         }
       });

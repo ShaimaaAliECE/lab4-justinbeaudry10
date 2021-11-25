@@ -15,7 +15,9 @@ xReq.onreadystatechange = function () {
       // For each question
       for (const [i, q] of questions.entries()) {
         // Add the question stem as bold text
-        markup += `<p><b>${i + 1}. ${q.stem}</b></p>`;
+        markup += `
+        <div id="question${i + 1}">
+          <p><b>${i + 1}. ${q.stem}</b></p>`;
 
         // For each option for the question
         for (const [num, opt] of q.options.entries()) {
@@ -27,6 +29,10 @@ xReq.onreadystatechange = function () {
               <label for="q${i + 1}a${num + 1}">${opt}</label><br>
               `;
         }
+        markup += `
+          <div id="feedback${i + 1}" style="margin-top: 1rem">
+          </div>
+        </div>`;
       }
 
       // Submit button
@@ -40,19 +46,22 @@ xReq.onreadystatechange = function () {
       $(`input[type="radio"]`).change(function () {
         // If it is now checked
         if ($(this).is(":checked")) {
+          let curBtn = this;
           // New request for the post request
           let answerReq = new XMLHttpRequest();
           answerReq.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
               // Give feedback to user in the form of an alert
               let result = this.responseText;
-              alert(result);
+              $(`#feedback${curBtn.id[1]}`)
+                .html(result)
+                .css("color", `${result === "Correct!" ? "Green" : "Red"}`);
             }
           };
 
           // Object to hold this radio button's id
           let optionObj = {
-            id: this.id,
+            id: curBtn.id,
           };
 
           // Converts this object to be able to send it in the post request

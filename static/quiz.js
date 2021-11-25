@@ -16,7 +16,9 @@ xReq.onreadystatechange = function () {
       for (const [i, q] of questions.entries()) {
         // Add the question stem as bold text
         markup += `
-        <div id="question${i + 1}">
+        <div id="question${
+          i + 1
+        }" style="margin: 0.5rem 0; padding: 0.5rem; border: 2px solid black; border-radius: 1rem; background-color: lightgray">
           <p><b>${i + 1}. ${q.stem}</b></p>`;
 
         // For each option for the question

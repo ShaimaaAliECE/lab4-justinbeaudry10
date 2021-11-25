@@ -60,8 +60,11 @@ app.post("/submit", (req, res) => {
   }
 
   // Markup to display user's score
-  let markup = `<h1>Grade:</h1>
-                <p>${score} points out of a possible ${numQuestions}</p>`;
+  let markup = `
+    <div style="padding: 1rem; border: 5px solid black; border-radius: 2rem; background-color: lightgray">
+      <h1>Grade:</h1>
+      <p>${score} points out of a possible ${numQuestions}</p>
+    </div>`;
   res.send(markup);
 });
 
